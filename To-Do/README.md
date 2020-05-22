@@ -36,5 +36,9 @@ SETUP
 
         to avoid needing to write this in the terminal every time the project is ran, a shortcut can be created with the 'start' script so the only command needed is 'npm start'. This will contain 'npm run build' (any npm scripts that are not built in like start must have run before them) 
 
+Creating The First React Component
+
+    components are the building blocks used in react. They are set up similar to functions and they can take arugments to make more customizable UI elements.
+
 
 [Beginner React Walkthrough](https://www.youtube.com/watch?v=yZ0f1Apb5CU&list=PL4cUxeGkcC9i0_2FF-WhtRIfIJ1lXlTZR&index=1)
