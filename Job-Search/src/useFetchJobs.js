@@ -1,13 +1,19 @@
 import {useReducer, useEffect} from 'react';
 import axios from 'axios';
 
-const GITJ_ENDPOINT = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json'
+//github jobs request will fail because of cors, using a proxy server to get around that
+const PROXY = process.env.REACT_APP_PROXY;
+//there are two options that have worked for me, if one fails, the program can switch to the other by just changing the enviorment variable
+const GITHUBJOBS_EP = 
+    PROXY === 'allorigins' 
+    ? `${process.env.REACT_APP_APE}${encodeURIComponent('https://jobs.github.com/positions.json')}`
+    : `${process.env.REACT_APP_CPE}https://jobs.github.com/positions.json`;
 
-const  ACTIONS = {
+
+const ACTIONS = {
     MAKE_REQUEST: 'make-request',
     GET_DATA: 'get-data',
     ERROR: 'error'
-
 }
 
 function reducer(state, action) {
@@ -29,11 +35,19 @@ export default (qParams, pageNum ) => {
         const cancelToken = axios.CancelToken.source();
 
         dispatch( {type: ACTIONS.MAKE_REQUEST} )
-        axios.get(GITJ_ENDPOINT, {
-            params: { ...qParams, page: pageNum, markdown: 1 }
+        axios.get(GITHUBJOBS_EP, {
+            params: { ...qParams, page: pageNum, markdown: 0 }
         })
         .then( res => {
-            dispatch( { type: ACTIONS.GET_DATA, payload: { jobs: res.data } } )
+            dispatch({ 
+                type: ACTIONS.GET_DATA, 
+                payload: { 
+                    //depending on the proxy server used, the response data uses will be slightly diffrent
+                    jobs: PROXY === 'allorigins' 
+                            ? JSON.parse(res.data.contents)
+                            : res.data  
+                } 
+            })
         })
         .catch ( err => {
             if (axios.isCancel(err)) return 
