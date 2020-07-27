@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useFetchJobs from './useFetchJobs';
 import {Container} from 'react-bootstrap';
 import Job from './Job';
+import JobPages from './JobPages';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           Software Engineering Jobs
         </h1>
       </div>
+      <JobPages page={page} setPage={setPage}/>
       <div
         style={{ ...styles.container }}
       >
@@ -28,6 +30,8 @@ function App() {
         {jobs.map( job => {
           return <Job key={job.id} job={job} />
         })}
+        <JobPages page={page} setPage={setPage}/>
+
     </Container>
   );
 }
