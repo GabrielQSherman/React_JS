@@ -3,6 +3,7 @@ import useFetchJobs from './useFetchJobs';
 import {Container} from 'react-bootstrap';
 import Job from './Job';
 import JobPages from './JobPages';
+import SearchForm from './SearchForm';
 
 function App() {
 
@@ -10,6 +11,16 @@ function App() {
   const [ page, setPage ] = useState(1)
 
   const { jobs, loading, error, hasNextPage } = useFetchJobs( params, page )
+
+  function handleSearchChange(evnt) {
+    const param = evnt.target.name
+    const value = evnt.target.value
+    setPage(1)
+    setParams( prvParams => {
+      return {...prvParams, [param]: value}
+    })
+  }
+
 
   return (
     <Container
@@ -20,6 +31,9 @@ function App() {
           Software Engineering Jobs 
         </h1>
       </div>
+      <SearchForm 
+        params={params} onParamChange={handleSearchChange}
+      />
       {!loading && <JobPages page={page} setPage={setPage} hasNextPage={hasNextPage}/>}
       <div
         style={{ ...styles.container }}
