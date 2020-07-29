@@ -36,6 +36,7 @@ export default (qParams, pageNum ) => {
     useEffect( () => {
 
         const cancelCurPage = axios.CancelToken.source();
+        const cancelNxtPage = axios.CancelToken.source();
 
         dispatch( {type: ACTIONS.MAKE_REQUEST} )
         axios.get(GITHUBJOBS_EP, {
@@ -77,6 +78,8 @@ export default (qParams, pageNum ) => {
 
         return () => {
             cancelCurPage.cancel()
+            cancelNxtPage.cancel()
+            
         }
     },
     [qParams, pageNum]

@@ -9,7 +9,7 @@ function App() {
   const [ params, setParams ] = useState({})
   const [ page, setPage ] = useState(1)
 
-  const { jobs, loading, error } = useFetchJobs( params, page )
+  const { jobs, loading, error, hasNextPage } = useFetchJobs( params, page )
 
   return (
     <Container
@@ -17,10 +17,10 @@ function App() {
     > 
       <div style={{...styles.headerDiv}}>
         <h1 style={{...styles.headText}}>
-          Software Engineering Jobs
+          Software Engineering Jobs 
         </h1>
       </div>
-      <JobPages page={page} setPage={setPage} hasNextPage={hasNextPage}/>
+      {!loading && <JobPages page={page} setPage={setPage} hasNextPage={hasNextPage}/>}
       <div
         style={{ ...styles.container }}
       >
@@ -30,7 +30,7 @@ function App() {
         {jobs.map( job => {
           return <Job key={job.id} job={job} />
         })}
-        <JobPages page={page} setPage={setPage} hasNextPage={hasNextPage}/>
+        {!loading && <JobPages page={page} setPage={setPage} hasNextPage={hasNextPage}/>}
 
     </Container>
   );
@@ -42,7 +42,7 @@ const styles = {
   },
   messageText: {
     color: 'white',
-    marginTop: '40%',
+    marginTop: '20%',
   },
   headText: {
     color: 'white',
