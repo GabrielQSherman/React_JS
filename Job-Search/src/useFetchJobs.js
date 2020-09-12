@@ -13,13 +13,16 @@ const GITHUBJOBS_EP =
 const ACTIONS = {
     MAKE_REQUEST: 'make-request',
     GET_DATA: 'get-data',
-    ERROR: 'error'
+    ERROR: 'error',
+    HAS_NEXT_PG: 'has-next-pg'
 }
 
 function reducer(state, action) {
     switch( action.type ) {
         case ACTIONS.MAKE_REQUEST:
             return { loading: true, jobs: []}
+        case ACTIONS.HAS_NEXT_PG:
+            return { ...state, hasNextPage: action.payload.hasNextPage}
         case ACTIONS.GET_DATA:
             return { ...state, loading: false, jobs: action.payload.jobs}
         case ACTIONS.ERROR:
@@ -32,7 +35,8 @@ export default (qParams, pageNum ) => {
 
     useEffect( () => {
 
-        const cancelToken = axios.CancelToken.source();
+        const cancelCurPage = axios.CancelToken.source();
+        const cancelNxtPage = axios.CancelToken.source();
 
         dispatch( {type: ACTIONS.MAKE_REQUEST} )
         axios.get(GITHUBJOBS_EP, {
@@ -54,8 +58,28 @@ export default (qParams, pageNum ) => {
             dispatch( { type: ACTIONS.ERROR, payload: { error: err } } )
         })
 
+
+        axios.get(GITHUBJOBS_EP, {
+            params: { ...qParams, page: pageNum+1, markdown: 0 }
+        })
+        .then( res => {
+            dispatch({ 
+                type: ACTIONS.HAS_NEXT_PG, 
+                payload: { 
+                    hasNextPage: res.data.length !== 0
+                } 
+            })
+        })
+        .catch ( err => {
+            if (axios.isCancel(err)) return 
+            dispatch( { type: ACTIONS.ERROR, payload: { error: err } } )
+        })
+
+
         return () => {
-            cancelToken.cancel()
+            cancelCurPage.cancel()
+            cancelNxtPage.cancel()
+            
         }
     },
     [qParams, pageNum]
