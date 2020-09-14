@@ -15,7 +15,7 @@ function App() {
     mainContain: {
       width: '100%',
       height: '100%',
-      backgroundColor: dm ? '#111' : 'white' 
+      backgroundColor: dm ? '#111' : 'white',
     }
   }
 
@@ -26,6 +26,7 @@ function App() {
       <BrowserRouter>
         <Header dm={dm}/>
         <Button
+          dm={dm}
           onClick={()=> toggleDm(!dm)}
           text={ dm ? 'Switch To Light Mode' : 'Switch To Dark Mode'  }
         />
