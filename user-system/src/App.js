@@ -8,7 +8,7 @@ import Button from './Components/Button'
 
 function App() {
 
-  const [dm, toggleDm] = useState(false);
+  const [dm, toggleDm] = useState(true);
 
 
   const styles = {
@@ -23,16 +23,16 @@ function App() {
     <div
       style={{...styles.mainContain}}
     >
-      <BrowserRouter>
-        <Header dm={dm}/>
-        <Button
-          dm={dm}
-          onClick={()=> toggleDm(!dm)}
-          text={ dm ? 'Switch To Light Mode' : 'Switch To Dark Mode'  }
-        />
-        <AppRouter dm={dm} />
-        <Footer dm={dm}/>
-      </BrowserRouter>
+      <Header dm={dm}/>
+        <BrowserRouter>
+          <Button
+            dm={dm}
+            onClick={()=> toggleDm(!dm)}
+            text={ dm ? 'Switch To Light Mode' : 'Switch To Dark Mode'  }
+          />
+          <AppRouter dm={dm} />
+        </BrowserRouter>
+      <Footer dm={dm}/>
     </div>
   );
 }
