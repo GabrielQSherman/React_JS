@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 import Button from './Button'
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
 
@@ -12,16 +13,19 @@ export default function Navbar() {
     <div
       style={{
         background: theme.ui,
-        color: theme.txt
+        color: theme.txt,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center'
       }}
     >
+      
       <Button 
         text="Home"
         onClick={()=>{alert('Your Home!')}}
       />
-      <h3>
-        {`Theme is ${ isDark ? 'Dark' : 'Light'}`}
-      </h3>
+      <ThemeToggle />
+
     </div>
   )
 }

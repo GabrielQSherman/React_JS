@@ -11,9 +11,12 @@ export const ThemeContextProvider = (props) => {
     dark: { txt: "#ddd", ui: "#333", bg: "#555"}
   })
 
+  const toggleTheme = () => {
+    setTheme( prevTheme => { return {...prevTheme, isDark: !prevTheme.isDark } })
+  }
   
   return (
-    <ThemeContext.Provider value={{...theme}}>
+    <ThemeContext.Provider value={{...theme, toggleTheme: toggleTheme}}>
       {props.children}      
     </ThemeContext.Provider>
   )
