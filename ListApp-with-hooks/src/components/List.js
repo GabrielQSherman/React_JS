@@ -7,9 +7,11 @@ export default function List(props) {
         {props.title}
       </h1>
       <ul>
-        {props.list.map(e => {
+        {props.list.map((e,i) => {
           return (
-            <li>
+            <li
+              key={i}
+            >
              { e.text}
             </li>
           )
