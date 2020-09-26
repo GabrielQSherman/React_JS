@@ -1,6 +1,7 @@
 import React from 'react';
 import List from './components/List';
 import Navbar from './components/Navbar';
+import { ThemeContextProvider as ThemeContext } from './contexts/ThemeContext';
 
 import cryptoList from './data/cryptoList';
 import { mainAppDiv } from './data/styles';
@@ -10,13 +11,13 @@ function App() {
       style={mainAppDiv}
     
     >
-      <Navbar />
-      <List 
-
-        title='Crypto List'
-        list={cryptoList}
-      
-      />
+      <ThemeContext>
+        <Navbar />
+        <List 
+          title='Crypto List'
+          list={cryptoList}
+        />
+      </ThemeContext>
     </div>
   );
 }
