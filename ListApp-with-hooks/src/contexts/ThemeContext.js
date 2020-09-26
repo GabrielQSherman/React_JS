@@ -11,11 +11,11 @@ export const ThemeContextProvider = (props) => {
     dark: { txt: "#ddd", ui: "#333", bg: "#555"}
   })
 
-
+  
   return (
     <ThemeContext.Provider value={{...theme}}>
       {props.children}      
     </ThemeContext.Provider>
   )
-
+  
 }
