@@ -1,8 +1,20 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { ThemeContext } from '../contexts/ThemeContext'
 
 export default function List(props) {
+
+  const
+  {isDark, light, dark} = useContext(ThemeContext),
+  theme = isDark ? dark : light;
+
+
   return (
-    <div>
+    <div
+      style={{
+        background: theme.ui,
+        color: theme.txt
+      }}
+    >
       <h1>
         {props.title}
       </h1>

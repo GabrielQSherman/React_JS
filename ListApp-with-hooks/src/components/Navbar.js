@@ -4,18 +4,24 @@ import Button from './Button'
 
 export default function Navbar() {
 
-  const theme = useContext(ThemeContext)
+  const 
+  {isDark, light, dark} = useContext(ThemeContext),
+  theme = isDark ? dark : light;
 
-  console.log(theme);
   return (
-    <div>
+    <div
+      style={{
+        background: theme.ui,
+        color: theme.txt
+      }}
+    >
       <Button 
         text="Home"
         onClick={()=>{alert('Your Home!')}}
       />
-      <h1>
-        {`Theme is ${theme.isDark ? 'Dark' : 'Light'}`}
-      </h1>
+      <h3>
+        {`Theme is ${ isDark ? 'Dark' : 'Light'}`}
+      </h3>
     </div>
   )
 }

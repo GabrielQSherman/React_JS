@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react'
+import { ThemeContext } from '../contexts/ThemeContext'
+
 export default function Button(props) {
 
-  const buttonStyle = {
-    backgroundColor: 'lightgrey',
+  const
+  {isDark, light, dark} = useContext(ThemeContext),
+  theme = isDark ? dark : light,
+  
+  buttonStyle = {
+    backgroundColor: isDark ? 'black' : 'lightgray',
+    color: theme.txt,
     padding: 10,
     borderRadius: 5,
     border: 'none',
