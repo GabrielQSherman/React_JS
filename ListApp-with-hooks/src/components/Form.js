@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { defaultForm } from  '../data/styles'
+
 export default function Form(props) {
 
   const input = props.inputs === undefined || !Array.isArray(props.inputs) ? [] : props.inputs;
@@ -14,7 +16,9 @@ export default function Form(props) {
   const [data, setData] = useState(intialState)
 
   return (
-    <form>
+    <form
+      style={{...defaultForm, ...props.style}}
+    >
 
     </form>
   )
