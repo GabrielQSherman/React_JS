@@ -4,21 +4,42 @@ import { defaultForm } from  '../data/styles'
 
 export default function Form(props) {
 
-  const input = props.inputs === undefined || !Array.isArray(props.inputs) ? [] : props.inputs;
+  const inputs = props.inputs === undefined || !Array.isArray(props.inputs) ? [] : props.inputs;
 
-  const intialState = input.reduce(function (allInputs, input) { 
+  const intialState = inputs.reduce(function (allInputs, input) { 
     allInputs[input.name] = ''
     return allInputs
   }, {})
 
-  console.log(intialState);
-  
   const [data, setData] = useState(intialState)
 
   return (
     <form
       style={{...defaultForm, ...props.style}}
     >
+
+      {inputs.map( input => {
+        return (
+          <input
+          
+          placeholder={input.ph}
+          name={input.name}
+          onChange={ ( e => {
+              const 
+              changedInput = e.target,
+              name =  e.target.name,
+              value = changedInput.value,
+              newData =  {...data};
+                
+              newData[name] = value
+                
+              setData(newData)
+            })
+          }
+          
+          />
+        )
+      })}
 
     </form>
   )
