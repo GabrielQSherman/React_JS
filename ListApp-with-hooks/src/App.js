@@ -6,6 +6,8 @@ import { ThemeContextProvider } from './contexts/ThemeContext';
 
 import cryptoList from './data/cryptoList';
 import { mainAppDiv } from './data/styles';
+import {cryptoFormInputs} from './data/formInputs'
+import Form from './components/Form';
 function App() {
   return (
     <div 
@@ -19,6 +21,9 @@ function App() {
             title='Crypto List'
             list={cryptoList}
             />
+          <Form 
+            inputs={cryptoFormInputs}
+          /> 
         </AuthContextProvider>
       </ThemeContextProvider>
     </div>
