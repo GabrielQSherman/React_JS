@@ -23,11 +23,6 @@ export default function Navbar() {
     >
       
       <Button 
-        text="Home"
-        onClick={()=>{alert('Your Home!')}}
-      />
-
-      <Button 
         text={isAuthorized ? 'Unauthorize' : 'Authorize'}
         onClick={toggleAuth}
       />

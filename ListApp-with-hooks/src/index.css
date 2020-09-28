@@ -1,3 +1,13 @@
 body {
   text-align: center;
 }
+
+* {
+  transition: all ease-in-out 1s;
+}
+
+button:hover {
+  transform: scale(.95,.95);
+  transition: all ease-in-out .5s;
+
+}

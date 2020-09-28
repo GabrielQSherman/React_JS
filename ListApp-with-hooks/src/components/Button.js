@@ -15,7 +15,7 @@ export default function Button(props) {
     border: 'none',
     fontSize: 'large',
     cursor: 'pointer',
-    margin: 10,
+    margin: 10, 
   }
 
   return (
