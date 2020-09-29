@@ -6,7 +6,7 @@ export default function Form(props) {
 
   const inputs = props.inputs === undefined || !Array.isArray(props.inputs) ? [] : props.inputs;
 
-  const intialState = inputs.reduce(function (allInputs, input) { 
+  const intialState = inputs.reduce( (allInputs, input) => { 
     allInputs[input.name] = ''
     return allInputs
   }, {})
@@ -16,6 +16,10 @@ export default function Form(props) {
   return (
     <form
       style={{...defaultForm, ...props.style}}
+      onSubmit={ (e) => {
+        e.preventDefault()
+        console.log(data);
+      }}
     >
 
       {inputs.map( input => {
@@ -24,15 +28,14 @@ export default function Form(props) {
           
           placeholder={input.ph}
           name={input.name}
-          onChange={ ( e => {
+          onChange={ ( 
+            e => {
               const 
               changedInput = e.target,
-              name =  e.target.name,
+              name =  changedInput.name,
               value = changedInput.value,
-              newData =  {...data};
-                
-              newData[name] = value
-                
+              newData =  {...data, [name]: value};
+
               setData(newData)
             })
           }
@@ -40,7 +43,9 @@ export default function Form(props) {
           />
         )
       })}
-
+      <button>
+        { 'Add New ' + props.dataName}
+      </button>
     </form>
   )
 }
