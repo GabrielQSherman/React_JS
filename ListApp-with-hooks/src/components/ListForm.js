@@ -18,6 +18,12 @@ export default function Form(props) {
       style={{...defaultForm, ...props.style}}
       onSubmit={ (e) => {
         e.preventDefault()
+        for (const key in data) {
+          const value = data[key];  
+          if (value === undefined || value.trim() === '') {
+            return
+          }
+        }
         props.setFunc( p => [...p, props.inputComplier(data)])
       }}
     >
