@@ -7,12 +7,12 @@ import { ThemeContextProvider } from './contexts/ThemeContext';
 import cryptoList from './data/cryptoList';
 import { mainAppDiv } from './data/styles';
 import {cryptoFormInputs} from './data/formInputs'
-import Form from './components/Form';
+import {cryptoCompiler} from './data/dataCompilers'
+
 function App() {
   return (
     <div 
       style={mainAppDiv}
-    
     >
       <ThemeContextProvider>
         <AuthContextProvider>
@@ -20,11 +20,10 @@ function App() {
           <List 
             title='Crypto List'
             list={cryptoList}
-            />
-          <Form 
             inputs={cryptoFormInputs}
             dataName='Cryptocurrency'
-          /> 
+            inputComplier={cryptoCompiler}
+            /> 
         </AuthContextProvider>
       </ThemeContextProvider>
     </div>
