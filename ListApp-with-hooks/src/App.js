@@ -23,6 +23,7 @@ function App() {
             />
           <Form 
             inputs={cryptoFormInputs}
+            dataName='Cryptocurrency'
           /> 
         </AuthContextProvider>
       </ThemeContextProvider>
