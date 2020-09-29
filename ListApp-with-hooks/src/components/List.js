@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 
 import ListForm from './ListForm'
@@ -10,6 +10,11 @@ export default function List(props) {
   theme = isDark ? dark : light,
   [listItems, setItems] = useState([...props.list]);
 
+  useEffect( () => {
+
+    console.log(`New Item Added To ${props.title} List: \n${listItems[listItems.length-1].text}`);
+
+  }, [listItems, props.title])
 
   return (
     <div
