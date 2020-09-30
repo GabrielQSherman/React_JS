@@ -11,3 +11,7 @@ button:hover {
   transition: all ease-in-out .5s;
 
 }
+
+li:hover {
+  text-decoration: line-through;
+}

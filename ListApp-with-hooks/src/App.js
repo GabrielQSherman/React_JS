@@ -19,6 +19,7 @@ function App() {
           <Navbar />
           <List 
             title='Crypto List'
+            listType='ordered'
             list={cryptoList}
             inputs={cryptoFormInputs}
             dataName='Cryptocurrency'
