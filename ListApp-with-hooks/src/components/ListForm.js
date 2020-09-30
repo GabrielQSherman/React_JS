@@ -1,6 +1,12 @@
-import React, { useState } from 'react'
+import {v1} from 'uuid'
 
-import { defaultForm } from  '../data/styles'
+import React, { useContext, useState } from 'react'
+
+import { defaultForm, defaultInput } from  '../data/styles'
+
+import { ThemeContext } from '../contexts/ThemeContext'
+
+const uuid = v1
 
 export default function Form(props) {
 
@@ -13,9 +19,22 @@ export default function Form(props) {
 
   const [data, setData] = useState(intialState)
 
+  const {isDark} = useContext(ThemeContext); 
+
+  const styles = {
+    inputTheme: {
+      color: isDark ? 'white' : 'black',
+      backgroundColor: !isDark ? 'white' : 'black'
+    },
+
+    formTheme: {
+
+    }
+  }
+
   return (
     <form
-      style={{...defaultForm, ...props.style}}
+      style={{...defaultForm, ...styles.formTheme, ...props.style}}
       onSubmit={ (e) => {
         e.preventDefault()
         for (const key in data) {
@@ -24,32 +43,33 @@ export default function Form(props) {
             return
           }
         }
-        props.setFunc( p => [...p, props.inputComplier(data)])
+        props.setFunc( p => [...p, {...props.inputComplier(data), id: uuid()}])
       }}
     >
 
-      {inputs.map( input => {
+      {inputs.map( (input, ind) => {
         return (
           <input
-          
+          key={ind}
+          style={{...defaultInput, ...styles.inputTheme}}
           placeholder={input.ph}
           name={input.name}
           onChange={ ( 
             e => {
               const 
               changedInput = e.target,
-              name =  changedInput.name,
+              name = changedInput.name,
               value = changedInput.value,
-              newData =  {...data, [name]: value};
-
+              newData= {...data, [name]: value};
               setData(newData)
             })
           }
-          
           />
         )
       })}
-      <button>
+      <button
+        style={{...defaultInput, ...styles.inputTheme, cursor: 'pointer'}}
+      >
         { 'Add New ' + props.dataName}
       </button>
     </form>
