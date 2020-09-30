@@ -16,6 +16,8 @@ export default function List(props) {
 
   }, [listItems, props.title])
 
+  const TagType = props.listType === 'ordered' ? 'ol' : 'ul'
+
   return (
     <div
       style={{
@@ -26,17 +28,22 @@ export default function List(props) {
       <h1>
         {props.title}
       </h1>
-      <ul>
+      <TagType>
         {listItems.map((e,i) => {
           return (
             <li
+              style={{cursor: 'pointer'}}
               key={i}
+              id={e.id || null}
+              onClick={(evnt => {
+                setItems(listItems.filter( item => item.id !== evnt.target.id))
+              })}
             >
              { e.text}
             </li>
           )
         })}
-      </ul>
+      </TagType>
 
       <ListForm 
       
