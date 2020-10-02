@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 
-import ListForm from './ListForm'
+import NewItemForm from './NewItemForm'
 
 export default function List(props) {
 
@@ -45,7 +45,7 @@ export default function List(props) {
         })}
       </TagType>
 
-      <ListForm 
+      <NewItemForm 
       
         inputs={props.inputs}
         dataName={props.dataName}
