@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { useListContext } from '../contexts/ListContext';
+import NewListForm from './NewListForm';
 
 export default function EveryList() {
   
@@ -25,7 +26,12 @@ export default function EveryList() {
           console.log(list);
         })
         : 'You have no lists, why not make one?'
-      }      
+      }  
+
+    <NewListForm 
+      
+      
+    />    
     </div>
   )
 }

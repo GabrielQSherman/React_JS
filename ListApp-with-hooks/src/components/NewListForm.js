@@ -5,10 +5,12 @@ import React, { useContext, useState } from 'react'
 import { defaultForm, defaultInput } from  '../data/styles'
 
 import { ThemeContext } from '../contexts/ThemeContext'
+import { useListContext } from '../contexts/ListContext';
+
 
 const uuid = v1
 
-export default function Form(props) {
+export default function NewListForm(props) {
 
   const inputs = props.inputs === undefined || !Array.isArray(props.inputs) ? [] : props.inputs;
 
@@ -18,7 +20,7 @@ export default function Form(props) {
   }, {})
 
   const [data, setData] = useState(intialState)
-
+  const {} = useListContext()
   const {isDark} = useContext(ThemeContext); 
 
   const styles = {
