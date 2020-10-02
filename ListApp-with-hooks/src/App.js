@@ -3,11 +3,10 @@ import List from './components/List';
 import Navbar from './components/Navbar';
 import { AuthContextProvider } from './contexts/AuthContext';
 import { ThemeContextProvider } from './contexts/ThemeContext';
+import { ListContextProvider } from './contexts/ListContext';
 
-import cryptoList from './data/cryptoList';
 import { mainAppDiv } from './data/styles';
-import {cryptoFormInputs} from './data/formInputs'
-import {cryptoCompiler} from './data/dataCompilers'
+import EveryList from './components/EveryList';
 
 function App() {
   return (
@@ -16,15 +15,10 @@ function App() {
     >
       <ThemeContextProvider>
         <AuthContextProvider>
-          <Navbar />
-          <List 
-            title='Crypto List'
-            listType='ordered'
-            list={cryptoList}
-            inputs={cryptoFormInputs}
-            dataName='Cryptocurrency'
-            inputComplier={cryptoCompiler}
-            /> 
+          <ListContextProvider>
+            <Navbar />
+            <EveryList />
+          </ListContextProvider>
         </AuthContextProvider>
       </ThemeContextProvider>
     </div>
