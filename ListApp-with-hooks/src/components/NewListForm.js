@@ -20,8 +20,10 @@ export default function NewListForm(props) {
   }, {})
 
   const [data, setData] = useState(intialState)
-  const {} = useListContext()
+  const {lists, updateLists} = useListContext()
   const {isDark} = useContext(ThemeContext); 
+
+  console.log(lists);
 
   const styles = {
     inputTheme: {
@@ -42,10 +44,12 @@ export default function NewListForm(props) {
         for (const key in data) {
           const value = data[key];  
           if (value === undefined || value.trim() === '') {
+            alert('You were missing something, try again.')
             return
           }
         }
-        props.setFunc( p => [...p, {...props.inputComplier(data), id: uuid()}])
+        const newList = [...lists, {...data, data: []} ]
+        updateLists(newList)  
       }}
     >
 
