@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { useListContext } from '../contexts/ListContext';
 import NewListForm from './NewListForm';
+import List from './List'
 
 import { newListInputs } from '../data/formInputs'
 
@@ -10,8 +11,6 @@ export default function EveryList() {
   const
   {isDark} = useContext(ThemeContext),
   {lists, updateLists} = useListContext();
-
-  console.log(lists, updateLists);
   
   return (
     <div
@@ -25,7 +24,14 @@ export default function EveryList() {
       {
         Array.isArray(lists) && lists.length > 0 ?
         lists.map( list => {
-          console.log(list);
+          
+          return (
+            <List
+              title={list.title}
+              list={list.data}
+              dataName={list.dataName}
+            />
+          )
         })
         : 'You have no lists, why not make one?'
       }  
