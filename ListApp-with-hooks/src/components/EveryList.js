@@ -3,6 +3,8 @@ import { ThemeContext } from '../contexts/ThemeContext'
 import { useListContext } from '../contexts/ListContext';
 import NewListForm from './NewListForm';
 
+import { newListInputs } from '../data/formInputs'
+
 export default function EveryList() {
   
   const
@@ -29,7 +31,7 @@ export default function EveryList() {
       }  
 
     <NewListForm 
-      
+      inputs={newListInputs}
       
     />    
     </div>
