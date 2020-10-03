@@ -5,20 +5,17 @@ import React, { useContext, useState } from 'react'
 import { defaultForm, defaultInput } from  '../data/styles'
 
 import { ThemeContext } from '../contexts/ThemeContext'
+import { useListContext } from '../contexts/ListContext';
 
 const uuid = v1
 
 export default function NewItemForm(props) {
 
-  const inputs = props.inputs === undefined || !Array.isArray(props.inputs) ? [] : props.inputs;
 
-  const intialState = inputs.reduce( (allInputs, input) => { 
-    allInputs[input.name] = ''
-    return allInputs
-  }, {})
+  const [data, setData] = useState('')
+  const {lists, updateLists} = useListContext()
 
-  const [data, setData] = useState(intialState)
-
+  console.log(lists);
   const {isDark} = useContext(ThemeContext); 
 
   const styles = {
@@ -37,36 +34,31 @@ export default function NewItemForm(props) {
       style={{...defaultForm, ...styles.formTheme, ...props.style}}
       onSubmit={ (e) => {
         e.preventDefault()
-        for (const key in data) {
-          const value = data[key];  
-          if (value === undefined || value.trim() === '') {
-            return
+        const newLists = lists.map( list => {
+          if (list.title === props.listId) {
+            return {...list, data: [...list.data,{text: data}]}
+          } else {
+            return list
           }
-        }
-        props.setFunc( p => [...p, {...props.inputComplier(data), id: uuid()}])
+          
+        })
+        updateLists(newLists)
       }}
     >
 
-      {inputs.map( (input, ind) => {
-        return (
           <input
-          key={ind}
           style={{...defaultInput, ...styles.inputTheme}}
-          placeholder={input.ph}
-          name={input.name}
+          placeholder={'Add A New '+props.dataName}
+          name='text'
           onChange={ ( 
             e => {
               const 
               changedInput = e.target,
-              name = changedInput.name,
-              value = changedInput.value,
-              newData= {...data, [name]: value};
-              setData(newData)
+              value = changedInput.value;
+              setData(value)
             })
           }
           />
-        )
-      })}
       <button
         style={{...defaultInput, ...styles.inputTheme, cursor: 'pointer'}}
       >
