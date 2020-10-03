@@ -10,12 +10,6 @@ export default function List(props) {
   theme = isDark ? dark : light,
   [listItems, setItems] = useState([...props.list]);
 
-  useEffect( () => {
-
-    console.log(`New Item Added To ${props.title} List: \n${listItems[listItems.length-1].text}`);
-
-  }, [listItems, props.title])
-
   const TagType = props.listType === 'ordered' ? 'ol' : 'ul'
 
   return (
@@ -35,9 +29,9 @@ export default function List(props) {
               style={{cursor: 'pointer'}}
               key={i}
               id={e.id || null}
-              onClick={(evnt => {
-                setItems(listItems.filter( item => item.id !== evnt.target.id))
-              })}
+              // onClick={(evnt => {
+              //   setItems(listItems.filter( item => item.id !== evnt.target.id))
+              // })}
             >
              { e.text}
             </li>
@@ -46,11 +40,9 @@ export default function List(props) {
       </TagType>
 
       <NewItemForm 
-      
+        listId={props.title}
         inputs={props.inputs}
         dataName={props.dataName}
-        setFunc={setItems}
-        inputComplier={props.inputComplier}
       />
     </div>
   )
