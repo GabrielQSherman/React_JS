@@ -29,9 +29,9 @@ export default function List(props) {
               style={{cursor: 'pointer'}}
               key={i}
               id={e.id || null}
-              // onClick={(evnt => {
-              //   setItems(listItems.filter( item => item.id !== evnt.target.id))
-              // })}
+              onClick={(evnt => {
+                setItems(listItems.filter( item => item.id !== evnt.target.id))
+              })}
             >
              { e.text}
             </li>
@@ -40,7 +40,7 @@ export default function List(props) {
       </TagType>
 
       <NewItemForm 
-        listId={props.title}
+        listId={props.listId}
         inputs={props.inputs}
         dataName={props.dataName}
       />

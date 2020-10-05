@@ -30,6 +30,8 @@ export default function EveryList() {
               title={list.title}
               list={list.data}
               dataName={list.dataName}
+              listType={list.isOrdered ? 'ordered' : 'unordered'}
+              listId={list.listId}
             />
           )
         })
