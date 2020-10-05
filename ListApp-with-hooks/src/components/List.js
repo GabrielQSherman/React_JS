@@ -13,6 +13,13 @@ export default function List(props) {
   const listItems = lists.filter( l => l.listId === props.listId )[0].data;
   const TagType = props.listType === 'ordered' ? 'ol' : 'ul'
 
+  const styles = {
+    defaultTxt: {
+      cursor: 'pointer',
+      color: theme.txt
+    }
+  }
+
   const removeItem = (evnt => {
     updateLists(lists.map( 
       list => {
@@ -26,22 +33,30 @@ export default function List(props) {
     )
   })
 
+  const removeList = ( () => { updateLists(lists.filter( list => list.listId !== props.listId )) })
+  const mouseOverTxt = ( evnt => {evnt.target.style.color = 'red'})
+  const mouseLeaveTxt = ( evnt => {evnt.target.style.color = theme.txt})
+
   return (
     <div
       style={{
         background: theme.ui,
-        color: theme.txt,
         borderRadius: 50,
         margin: 10,
       }}
     >
       <h1
-        style={{
+        style={{ 
+          ...styles.defaultTxt,       
           background: isDark ? 'black' : 'white',
           marginLeft: '10%',
           marginRight: '10%',
-          borderRadius: 25,
+          borderRadius: 25, 
         }}
+        onClick={removeList}
+        onMouseOver={mouseOverTxt}
+        onMouseLeave={mouseLeaveTxt}
+        className='listTitle'
       >
         {props.title}
       </h1>
@@ -49,10 +64,12 @@ export default function List(props) {
         {listItems.map((e,i) => {
           return (
             <li
-              style={{cursor: 'pointer'}}
+              style={{ ...styles.defaultTxt }}
               key={i}
               id={e.id || null}
               onClick={removeItem}
+              onMouseOver={mouseOverTxt}
+              onMouseLeave={mouseLeaveTxt}      
             >
              { e.text}
             </li>
