@@ -15,7 +15,7 @@ export default function NewListForm(props) {
   const inputs = props.inputs === undefined || !Array.isArray(props.inputs) ? [] : props.inputs;
 
   const intialState = inputs.reduce( (allInputs, input) => { 
-    allInputs[input.name] = ''
+    allInputs[input.name] = input.type === 'checkbox' ? false : ''
     return allInputs
   }, {})
 
@@ -23,7 +23,22 @@ export default function NewListForm(props) {
   const {lists, updateLists} = useListContext()
   const {isDark} = useContext(ThemeContext); 
 
-  console.log(lists);
+  // console.log(lists);
+  const inputOnChange = e => {
+                
+    const 
+    changedInput = e.target,
+    name = changedInput.name,
+    value = changedInput.value;
+    let
+    newData;
+    if (changedInput.type === 'text') {
+      newData={...data, [name]: value}
+    } else {
+      newData={...data, [name]: !data[name]}
+    }
+    setData(newData)
+  }
 
   const styles = {
     inputTheme: {
@@ -43,34 +58,36 @@ export default function NewListForm(props) {
         e.preventDefault()
         for (const key in data) {
           const value = data[key];  
-          if (value === undefined || value.trim() === '') {
+          if (value === undefined || (typeof value === 'string' && value.trim() === '')) {
             alert('You were missing something, try again.')
             return
           }
         }
-        const newList = [...lists, {...data, data: []} ]
+        const newList = [...lists, {...data, data: [], id: uuid()} ]
         updateLists(newList)  
       }}
     >
 
       {inputs.map( (input, ind) => {
         return (
-          <input
-          key={ind}
-          style={{...defaultInput, ...styles.inputTheme}}
-          placeholder={input.ph}
-          name={input.name}
-          onChange={ ( 
-            e => {
-              const 
-              changedInput = e.target,
-              name = changedInput.name,
-              value = changedInput.value,
-              newData= {...data, [name]: value};
-              setData(newData)
-            })
-          }
-          />
+          <div 
+            style={{
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <label>{input.label}</label>
+            <input
+            key={ind}
+            style={{...defaultInput, ...styles.inputTheme}}
+            placeholder={input.ph}
+            name={input.name}
+            type={input.type || 'text'}
+            value={data[input.name]}
+            onChange={inputOnChange}
+
+            />
+          </div>
         )
       })}
       <button
