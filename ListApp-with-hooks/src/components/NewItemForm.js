@@ -14,8 +14,6 @@ export default function NewItemForm(props) {
 
   const [data, setData] = useState('')
   const {lists, updateLists} = useListContext()
-
-  console.log(lists);
   const {isDark} = useContext(ThemeContext); 
 
   const styles = {

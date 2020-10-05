@@ -10,7 +10,7 @@ export default function EveryList() {
   
   const
   {isDark} = useContext(ThemeContext),
-  {lists, updateLists} = useListContext();
+  {lists} = useListContext();
   
   return (
     <div
@@ -23,10 +23,11 @@ export default function EveryList() {
     >
       {
         Array.isArray(lists) && lists.length > 0 ?
-        lists.map( list => {
+        lists.map( (list,idx) => {
           
           return (
             <List
+              key={idx}
               title={list.title}
               list={list.data}
               dataName={list.dataName}

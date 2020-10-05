@@ -47,7 +47,7 @@ export default function NewListForm(props) {
     },
 
     formTheme: {
-
+      color: isDark ? 'white' : 'black'
     }
   }
 
@@ -75,10 +75,10 @@ export default function NewListForm(props) {
               display: 'flex',
               flexDirection: 'column'
             }}
+            key={ind}
           >
             <label>{input.label}</label>
             <input
-            key={ind}
             style={{...defaultInput, ...styles.inputTheme}}
             placeholder={input.ph}
             name={input.name}

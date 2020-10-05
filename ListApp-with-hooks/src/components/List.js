@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState} from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 
 import NewItemForm from './NewItemForm'
