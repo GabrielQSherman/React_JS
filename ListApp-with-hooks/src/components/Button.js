@@ -8,7 +8,7 @@ export default function Button(props) {
   theme = isDark ? dark : light,
   
   buttonStyle = {
-    backgroundColor: isDark ? 'black' : 'lightgray',
+    backgroundColor: theme.bg,
     color: theme.txt,
     padding: 10,
     borderRadius: 5,

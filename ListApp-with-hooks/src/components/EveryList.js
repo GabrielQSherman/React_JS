@@ -9,9 +9,10 @@ import { newListInputs } from '../data/formInputs'
 export default function EveryList() {
   
   const
-  {isDark} = useContext(ThemeContext),
-  {lists} = useListContext();
-  
+  {isDark, light, dark} = useContext(ThemeContext),
+  {lists} = useListContext(),
+  theme = isDark ? dark : light;
+
   return (
     <div>
       <div
@@ -21,7 +22,7 @@ export default function EveryList() {
           display: 'flex',
           flexWrap: 'wrap',
           flexDirection: 'row',
-          backgroundColor: isDark ? '#1d2a41' : '#ffb89e',
+          backgroundColor: theme.sbg,
           justifyContent: 'center',
         }}
       >
@@ -40,7 +41,7 @@ export default function EveryList() {
               />
             )
           })
-          : 'You have no lists, why not make one?'
+          :  <h1 style={{color: isDark ? 'white' : 'black'}} >You have no lists, why not make one?</h1>
         }  
       </div>
       <NewListForm 

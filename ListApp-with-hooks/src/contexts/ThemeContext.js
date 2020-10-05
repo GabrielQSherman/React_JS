@@ -7,8 +7,8 @@ export const ThemeContextProvider = (props) => {
 
   const [theme, setTheme] = useState({
     isDark: true,
-    light: { txt: "#555", ui: "#ddd", bg: "#eee"},
-    dark: { txt: "#ddd", ui: "#333", bg: "#555"}
+    light: { txt: "#555", ui: "#b4e7ff", bg: "#ffdbf3", sbg: '#ffb89e'},
+    dark: { txt: "#ddd", ui: "#004561", bg: "#111", sbg: '#c28269'}
   })
 
   const toggleTheme = () => {
@@ -17,7 +17,7 @@ export const ThemeContextProvider = (props) => {
 
   useEffect( () => {
 
-    document.body.style.backgroundColor = theme.isDark ? 'black' : 'lightgrey'
+    document.body.style.backgroundColor = theme.isDark ? theme.dark.bg : theme.light.bg
 
   }, [theme])
   

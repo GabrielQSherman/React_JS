@@ -15,3 +15,13 @@ button:hover {
 li:hover {
   text-decoration: line-through;
 }
+
+.listTitle:hover {
+  transform: scale(.95,.95);
+  text-decoration: line-through;
+}
+
+input:hover {
+  transform: translateX(-3%);
+  transition: all ease-in-out .5s;
+}
