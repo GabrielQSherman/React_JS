@@ -35,8 +35,8 @@ export default function NewItemForm(props) {
       onSubmit={ (e) => {
         e.preventDefault()
         const newLists = lists.map( list => {
-          if (list.title === props.listId) {
-            return {...list, data: [...list.data,{text: data}]}
+          if (list.listId === props.listId) {
+            return {...list, data: [...list.data,{text: data, id: uuid()}]}
           } else {
             return list
           }
@@ -48,7 +48,7 @@ export default function NewItemForm(props) {
 
           <input
           style={{...defaultInput, ...styles.inputTheme}}
-          placeholder={'Add A New '+props.dataName}
+          placeholder={'Enter A '+props.dataName}
           name='text'
           onChange={ ( 
             e => {

@@ -63,7 +63,7 @@ export default function NewListForm(props) {
             return
           }
         }
-        const newList = [...lists, {...data, data: [], id: uuid()} ]
+        const newList = [...lists, {...data, data: [], listId: uuid()} ]
         updateLists(newList)  
       }}
     >
