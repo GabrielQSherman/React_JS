@@ -43,7 +43,7 @@ export default function NewListForm(props) {
   const styles = {
     inputTheme: {
       color: isDark ? 'white' : 'black',
-      backgroundColor: !isDark ? 'white' : 'black'
+      backgroundColor: !isDark ? 'white' : '#222'
     },
     formTheme: {
       color: isDark ? 'white' : 'black'
@@ -101,7 +101,7 @@ export default function NewListForm(props) {
         <button
           style={{...defaultInput, ...styles.inputTheme, cursor: 'pointer'}}
         >
-          { 'Add New ' + props.dataName}
+          { 'Add New List'}
         </button>
       </form>
     </div>

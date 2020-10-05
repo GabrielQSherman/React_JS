@@ -13,34 +13,39 @@ export default function EveryList() {
   {lists} = useListContext();
   
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-        backgroundColor: isDark ? 'midnightblue' : 'coral'
-      }}
-    >
-      {
-        Array.isArray(lists) && lists.length > 0 ?
-        lists.map( (list,idx) => {
-          
-          return (
-            <List
-              key={idx}
-              title={list.title}
-              list={list.data}
-              dataName={list.dataName}
-              listType={list.isOrdered ? 'ordered' : 'unordered'}
-              listId={list.listId}
-            />
-          )
-        })
-        : 'You have no lists, why not make one?'
-      }  
-    <NewListForm 
-      inputs={newListInputs}
-    />    
-    </div>
+    <div>
+      <div
+        style={{
+          paddingTop: 70,
+          paddingBottom: 30,
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+          backgroundColor: isDark ? '#1d2a41' : '#ffb89e',
+          justifyContent: 'center',
+        }}
+      >
+        {
+          Array.isArray(lists) && lists.length > 0 ?
+          lists.map( (list,idx) => {
+            
+            return (
+              <List
+                key={idx}
+                title={list.title}
+                list={list.data}
+                dataName={list.dataName}
+                listType={list.isOrdered ? 'ordered' : 'unordered'}
+                listId={list.listId}
+              />
+            )
+          })
+          : 'You have no lists, why not make one?'
+        }  
+      </div>
+      <NewListForm 
+        inputs={newListInputs}
+      />      
+  </div>
   )
 }

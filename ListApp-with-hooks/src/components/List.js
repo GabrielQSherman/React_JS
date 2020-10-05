@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext} from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { useListContext } from '../contexts/ListContext';
 import NewItemForm from './NewItemForm'
@@ -30,10 +30,19 @@ export default function List(props) {
     <div
       style={{
         background: theme.ui,
-        color: theme.txt
+        color: theme.txt,
+        borderRadius: 50,
+        margin: 10,
       }}
     >
-      <h1>
+      <h1
+        style={{
+          background: isDark ? 'black' : 'white',
+          marginLeft: '10%',
+          marginRight: '10%',
+          borderRadius: 25,
+        }}
+      >
         {props.title}
       </h1>
       <TagType>
@@ -50,7 +59,6 @@ export default function List(props) {
           )
         })}
       </TagType>
-
       <NewItemForm 
         listId={props.listId}
         inputs={props.inputs}
