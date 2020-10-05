@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
-
+import { useListContext } from '../contexts/ListContext';
 import NewItemForm from './NewItemForm'
 
 export default function List(props) {
@@ -8,8 +8,10 @@ export default function List(props) {
   const
   {isDark, light, dark} = useContext(ThemeContext),
   theme = isDark ? dark : light,
-  [listItems, setItems] = useState([...props.list]);
+  // [listItems, setItems] = useState([...props.list]);
+  {lists, updateLists} = useListContext()
 
+  const listItems = lists.filter( l => l.listId === props.listId )[0].data;
   const TagType = props.listType === 'ordered' ? 'ol' : 'ul'
 
   return (
@@ -30,7 +32,16 @@ export default function List(props) {
               key={i}
               id={e.id || null}
               onClick={(evnt => {
-                setItems(listItems.filter( item => item.id !== evnt.target.id))
+                updateLists(lists.map( 
+                  list => {
+                    if (list.listId === props.listId) {
+                      return {...list, data: list.data.filter(item => item.id !== evnt.target.id)}
+                    } else {
+                      return list
+                    }
+                  }  
+                )
+                )
               })}
             >
              { e.text}
