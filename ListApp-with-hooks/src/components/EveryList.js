@@ -38,10 +38,8 @@ export default function EveryList() {
         })
         : 'You have no lists, why not make one?'
       }  
-
     <NewListForm 
       inputs={newListInputs}
-      
     />    
     </div>
   )

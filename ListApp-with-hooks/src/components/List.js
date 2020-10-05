@@ -8,11 +8,23 @@ export default function List(props) {
   const
   {isDark, light, dark} = useContext(ThemeContext),
   theme = isDark ? dark : light,
-  // [listItems, setItems] = useState([...props.list]);
   {lists, updateLists} = useListContext()
 
   const listItems = lists.filter( l => l.listId === props.listId )[0].data;
   const TagType = props.listType === 'ordered' ? 'ol' : 'ul'
+
+  const removeItem = (evnt => {
+    updateLists(lists.map( 
+      list => {
+        if (list.listId === props.listId) {
+          return {...list, data: list.data.filter(item => item.id !== evnt.target.id)}
+        } else {
+          return list
+        }
+      }  
+    )
+    )
+  })
 
   return (
     <div
@@ -31,18 +43,7 @@ export default function List(props) {
               style={{cursor: 'pointer'}}
               key={i}
               id={e.id || null}
-              onClick={(evnt => {
-                updateLists(lists.map( 
-                  list => {
-                    if (list.listId === props.listId) {
-                      return {...list, data: list.data.filter(item => item.id !== evnt.target.id)}
-                    } else {
-                      return list
-                    }
-                  }  
-                )
-                )
-              })}
+              onClick={removeItem}
             >
              { e.text}
             </li>

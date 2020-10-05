@@ -27,20 +27,32 @@ export default function NewItemForm(props) {
     }
   }
 
+  const submitNewItem = e => {
+    const 
+    changedInput = e.target,
+    value = changedInput.value;
+    setData(value)
+  }
+
   return (
     <form
       style={{...defaultForm, ...styles.formTheme, ...props.style}}
       onSubmit={ (e) => {
         e.preventDefault()
-        const newLists = lists.map( list => {
-          if (list.listId === props.listId) {
-            return {...list, data: [...list.data,{text: data, id: uuid()}]}
-          } else {
-            return list
-          }
-          
-        })
-        updateLists(newLists)
+        if (data.trim() !== '') {
+          const newLists = lists.map( list => {
+            if (list.listId === props.listId) {
+              return {...list, data: [...list.data,{text: data, id: uuid()}]}
+            } else {
+              return list
+            }
+            
+          })
+          updateLists(newLists)
+          setData('')
+        } else {
+          alert('Enter Something To Add To The List')
+        }
       }}
     >
 
@@ -48,14 +60,8 @@ export default function NewItemForm(props) {
           style={{...defaultInput, ...styles.inputTheme}}
           placeholder={'Enter A '+props.dataName}
           name='text'
-          onChange={ ( 
-            e => {
-              const 
-              changedInput = e.target,
-              value = changedInput.value;
-              setData(value)
-            })
-          }
+          value={data}
+          onChange={submitNewItem}
           />
       <button
         style={{...defaultInput, ...styles.inputTheme, cursor: 'pointer'}}

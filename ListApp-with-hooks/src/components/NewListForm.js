@@ -45,56 +45,65 @@ export default function NewListForm(props) {
       color: isDark ? 'white' : 'black',
       backgroundColor: !isDark ? 'white' : 'black'
     },
-
     formTheme: {
       color: isDark ? 'white' : 'black'
+    },
+    div: {
+      display: 'flex',
+      flexDirection: 'column',
+      color: isDark ? 'white' : 'black',
     }
   }
 
   return (
-    <form
-      style={{...defaultForm, ...styles.formTheme, ...props.style}}
-      onSubmit={ (e) => {
-        e.preventDefault()
-        for (const key in data) {
-          const value = data[key];  
-          if (value === undefined || (typeof value === 'string' && value.trim() === '')) {
-            alert('You were missing something, try again.')
-            return
-          }
-        }
-        const newList = [...lists, {...data, data: [], listId: uuid()} ]
-        updateLists(newList)  
-      }}
+    <div
+      style={{...styles.div}}
     >
-
-      {inputs.map( (input, ind) => {
-        return (
-          <div 
-            style={{
-              display: 'flex',
-              flexDirection: 'column'
-            }}
-            key={ind}
-          >
-            <label>{input.label}</label>
-            <input
-            style={{...defaultInput, ...styles.inputTheme}}
-            placeholder={input.ph}
-            name={input.name}
-            type={input.type || 'text'}
-            value={data[input.name]}
-            onChange={inputOnChange}
-
-            />
-          </div>
-        )
-      })}
-      <button
-        style={{...defaultInput, ...styles.inputTheme, cursor: 'pointer'}}
+      <h2>
+        Add A New List
+      </h2>
+      <form
+        style={{...defaultForm, ...styles.formTheme, ...props.style}}
+        onSubmit={ (e) => {
+          e.preventDefault()
+          for (const key in data) {
+            const value = data[key];  
+            if (value === undefined || (typeof value === 'string' && value.trim() === '')) {
+              alert('You were missing something, try again.')
+              return
+            }
+          }
+          const newList = [...lists, {...data, data: [], listId: uuid()} ]
+          updateLists(newList)
+          setData(intialState)
+        }}
       >
-        { 'Add New ' + props.dataName}
-      </button>
-    </form>
+
+        {inputs.map( (input, ind) => {
+          return (
+            <div 
+              style={{...styles.div}}
+              key={ind}
+            >
+              <label>{input.label}</label>
+              <input
+              style={{...defaultInput, ...styles.inputTheme}}
+              placeholder={input.ph}
+              name={input.name}
+              type={input.type || 'text'}
+              value={data[input.name]}
+              onChange={inputOnChange}
+
+              />
+            </div>
+          )
+        })}
+        <button
+          style={{...defaultInput, ...styles.inputTheme, cursor: 'pointer'}}
+        >
+          { 'Add New ' + props.dataName}
+        </button>
+      </form>
+    </div>
   )
 }
