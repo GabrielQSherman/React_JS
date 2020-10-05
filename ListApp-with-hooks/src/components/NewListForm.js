@@ -80,6 +80,7 @@ export default function NewListForm(props) {
       >
 
         {inputs.map( (input, ind) => {
+          console.log(input.name, typeof data[input.name]);
           return (
             <div 
               style={{...styles.div}}
@@ -91,7 +92,8 @@ export default function NewListForm(props) {
               placeholder={input.ph}
               name={input.name}
               type={input.type || 'text'}
-              value={data[input.name]}
+              value={typeof data[input.name] == 'string' ? data[input.name] : undefined}
+              checked={typeof data[input.name] == 'boolean' ? data[input.name] : undefined}
               onChange={inputOnChange}
 
               />
