@@ -16,7 +16,7 @@ export default function List(props) {
   const styles = {
     defaultTxt: {
       cursor: 'pointer',
-      color: theme.txt
+      color: theme.txt,
     }
   }
 
@@ -33,7 +33,15 @@ export default function List(props) {
     )
   })
 
-  const removeList = ( () => { updateLists(lists.filter( list => list.listId !== props.listId )) })
+  const removeList = ( () => { 
+    const confirm = prompt(`Are you sure you want to delete the ${props.title} list?\n\nEnter 'delete' to confirm this.`)
+    if (confirm === 'delete') {
+      alert(`${props.title} List Deleted`)
+      updateLists(lists.filter( list => list.listId !== props.listId )) 
+    } else {
+      alert('List Deletion Canceled')
+    }
+  })
   const mouseOverTxt = ( evnt => {evnt.target.style.color = 'red'})
   const mouseLeaveTxt = ( evnt => {evnt.target.style.color = theme.txt})
 
@@ -64,7 +72,7 @@ export default function List(props) {
         {listItems.map((e,i) => {
           return (
             <li
-              style={{ ...styles.defaultTxt }}
+              style={{ ...styles.defaultTxt, fontSize: '120%' }}
               key={i}
               id={e.id || null}
               onClick={removeItem}

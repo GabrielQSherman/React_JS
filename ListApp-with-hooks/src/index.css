@@ -1,5 +1,8 @@
 body {
   text-align: center;
+  margin-top: 0;
+  font-family: monospace;
+  font-size: 150%;
 }
 
 * {
@@ -22,6 +25,6 @@ li:hover {
 }
 
 input:hover {
-  transform: translateX(-3%);
+  transform: translateX(2%);
   transition: all ease-in-out .5s;
 }

@@ -24,6 +24,7 @@ export default function EveryList() {
           flexDirection: 'row',
           backgroundColor: theme.sbg,
           justifyContent: 'center',
+          borderRadius: '0 0 100px 100px',
         }}
       >
         {

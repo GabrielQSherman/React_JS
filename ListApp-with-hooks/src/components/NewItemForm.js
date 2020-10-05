@@ -14,16 +14,18 @@ export default function NewItemForm(props) {
 
   const [data, setData] = useState('')
   const {lists, updateLists} = useListContext()
-  const {isDark} = useContext(ThemeContext); 
+  const {isDark, light, dark} = useContext(ThemeContext); 
 
   const styles = {
     inputTheme: {
       color: isDark ? 'white' : 'black',
-      backgroundColor: !isDark ? 'white' : 'black'
+      backgroundColor: !isDark ? 'white' : 'black',
     },
 
     formTheme: {
-
+      backgroundColor: !isDark ? dark.sbg : light.sbg,
+      margin: 30,
+      borderRadius: 23
     }
   }
 
