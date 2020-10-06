@@ -5,9 +5,9 @@ Room prices equation; Price =
 
 
 Task List
-    [] initialize React project
-    [] create navigation bar
-    [] create components for Rent and Return components.
+    [*] initialize React project
+    [*] create navigation bar
+    [*] create components for Rent and Return components.
     [] have the renting page or returning page display when a navbar button is pressed
     [] create context for hotel rooms
     [] create short algorithm to create room data programmatically and set that data as the initial value of the roomsContext
