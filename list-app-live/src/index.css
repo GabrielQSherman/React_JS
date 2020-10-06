@@ -12,3 +12,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  transition: all ease-in-out .5s;
+}
+
+button {
+  border: none;
+  font-size: large;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover{
+  transform: scale(.95,.95);
+}
+
+li {
+  cursor: pointer;
+  font-size: larger;
+}
+
+li:hover{
+  text-decoration: line-through;
+  transform: scale(.95,.95);
+  color: red
+}

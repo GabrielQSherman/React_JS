@@ -2,6 +2,12 @@ import React, {useContext} from 'react'
 import {v1 as uuid} from 'uuid'
 import { ListContext, useListContext } from '../hooks/listContext';
 
+const buttonStyle= {
+  borderRadius: 5,
+  padding: 10,
+  margin: 10,
+}
+
 export default function ControlPanel() {
 
     const {list, setList}  = useContext(ListContext);
@@ -29,8 +35,17 @@ export default function ControlPanel() {
         <div>
             <h1>Your List</h1>
             <h3>Total Items: {list.length}</h3>
-            <button onClick={addItem}>Add Item To List</button>
-            <button onClick={clearList}>Clear List</button>
+            <button 
+              onClick={addItem}
+              style={{...buttonStyle}}
+            >
+                Add Item To List
+            </button>
+            <button 
+              onClick={clearList}
+              style={{...buttonStyle}}
+            >
+              Clear List</button>
         </div>
     )
 }
