@@ -27,12 +27,26 @@ export default function Navigation() {
         )
     }
   }
+
+  const renderButtons = (pageName) => {
+    
+    const buttons = [{text: 'Back To Home', pn: 'home'}, {text: 'Return A Room', pn: 'return'}, {text: 'Checkout A Room', pn: 'rent'}]
+    
+    return buttons.map( (info, i) => {
+      if (pageName === info.pn) return null
+  
+      return (
+        <button key={i}
+        onClick = {() => {setPage(info.pn)}}
+        >{info.text}</button>
+      )
+    })
+  }
+
   return (
     <div>
       <div>
-        <button>Home</button>
-        <button>Rent</button>
-        <button>Return</button>
+        {renderButtons(page)}
       </div>
       {renderPage(page)}
     </div>
