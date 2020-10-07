@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Welcome to the CareerDevs Hotel</h1>
+      <h3>Welcome to The CareerDevs Hotel home page</h3>
       <h4>
         {`We have ${flatten(rooms).length} rooms total`}
       </h4>

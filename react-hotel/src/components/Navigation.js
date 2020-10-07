@@ -51,6 +51,20 @@ export default function Navigation() {
     <div
       style={{...styles.mainDiv}}
     >
+      <div
+        style={{...styles.mainTitleDiv}}
+      >
+        <h1
+          style={{...styles.mainTitle}}
+        >
+          The CareerDevs Hotel
+        </h1>
+        <img 
+          src='./cdlogo.png' 
+          alt=''
+          style={{...styles.titleLogo}} 
+        />
+      </div>
       <div>
         {renderButtons(page)}
       </div>
