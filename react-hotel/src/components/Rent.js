@@ -1,14 +1,15 @@
 import React from 'react'
 
+import { useWalletContext } from '../contexts/walletContext'
 import { useRoomContext } from '../contexts/roomContext'
+
 import flattenArray from '../utils/flattenArray'
-
 import {availableRooms} from '../utils/hotelFilters'
-
 import styles from '../utils/styles'
 
 export default function Rent() {
 
+  const {wallet, setWallet} = useWalletContext()
   const {rooms, setRooms} = useRoomContext() 
 
   const availRooms = availableRooms(rooms).map( (floor, floorInx) => {
@@ -32,10 +33,14 @@ export default function Rent() {
     id = e.target.parentElement.id,
     newRooms = rooms.map( floor => {
       return floor.map( room => {
-        if ( room.id === id ) {
-          return {...room, renter: checkoutName}
-        } else {
+        if ( room.id !== id ) return room
+
+        if ( wallet - room.price < 0 ) {
+          alert('You dont have enough to check-in to this room')
           return room
+        } else {
+          setWallet(wallet - room.price)
+          return {...room, renter: checkoutName}
         }
       })
     })
