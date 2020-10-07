@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 
 import Rent from './Rent'
 import Return from './Return'
+import Home from './Home'
 
 export default function Navigation() {
 
@@ -11,7 +12,7 @@ export default function Navigation() {
     switch (pageName) {
       case 'home':
         return(
-          <h1>Home</h1>
+          <Home />
         )
       case 'rent':
         return(
