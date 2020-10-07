@@ -1,14 +1,17 @@
 import React from 'react'
 
+import { useWalletContext } from '../contexts/walletContext'
 import { useRoomContext } from '../contexts/roomContext'
+
 import flattenArray from '../utils/flattenArray'
-
 import {rentedRooms} from '../utils/hotelFilters'
-
 import styles from '../utils/styles'
+
+const deposit = 45;
 
 export default function Rent() {
 
+  const {wallet, setWallet} = useWalletContext()
   const {rooms, setRooms} = useRoomContext() 
 
   const rntRooms = rentedRooms(rooms).map( (floor, floorInx) => {
@@ -34,7 +37,8 @@ export default function Rent() {
       return floor.map( room => {
         if ( room.id === id ) {
           if (checkoutName === room.renter) {
-            alert('Room Checkedout Successfully')
+            setWallet(wallet+deposit)
+            alert('Room Checkedout Successfully\nYour $45 Deposit Was Returned To Your Wallet')
             return {...room, renter: null}
           } else {
             alert('That was not the name used to check-in this room')
