@@ -5,10 +5,12 @@ import Return from './Return'
 import Home from './Home'
 import styles from '../utils/styles'
 
+import { useWalletContext } from '../contexts/walletContext'
+
 export default function Navigation() {
 
   const [page, setPage] = useState('home')
-
+  const {wallet, setWallet} = useWalletContext()
   const renderPage = (pageName) => {
     switch (pageName) {
       case 'home':
@@ -32,7 +34,7 @@ export default function Navigation() {
 
   const renderButtons = (pageName) => {
     
-    const buttons = [{text: 'Back To Home', pn: 'home'}, {text: 'Return A Room', pn: 'return'}, {text: 'Checkout A Room', pn: 'rent'}]
+    const buttons = [{text: 'Back To Home', pn: 'home'}, {text: 'Return A Room', pn: 'return'}, {text: 'Checkout A Room', pn: 'rent'}, {text: 'Add Funds'}]
     
     return buttons.map( (info, i) => {
       if (pageName === info.pn) return null
@@ -41,7 +43,11 @@ export default function Navigation() {
         <button
         style={{...styles.button, borderRadius: 7, margin: 10}} 
         key={i}
-        onClick = {() => {setPage(info.pn)}}
+        onClick = {
+          info.pn !== undefined
+          ? () => {setPage(info.pn)}
+          : () => {setWallet(wallet+10)}
+        }
         >{info.text}</button>
       )
     })
@@ -65,8 +71,15 @@ export default function Navigation() {
           style={{...styles.titleLogo}} 
         />
       </div>
-      <div>
+      <div
+        style={{...styles.buttonDiv}}
+      >
         {renderButtons(page)}
+        <h4
+          style={{...styles.fundsText}}
+        >
+          { wallet ? `Wallet: $${wallet}` : '$0'}
+        </h4>
       </div>
       {renderPage(page)}
     </div>

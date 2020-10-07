@@ -37,5 +37,18 @@ module.exports = {
     border: 'none',
     color: 'white',
     backgroundColor: '#333',
+  },
+  buttonDiv: {
+    display: 'flex',
+    justifyContent: 'center'
+
+  },
+  fundsText: {
+    border: 'solid 1px white', 
+    padding: 10, 
+    margin:'auto 0', 
+    marginLeft: 10, 
+    cursor: 'default',
+    borderRadius: 5
   }
 }
