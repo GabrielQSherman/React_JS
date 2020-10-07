@@ -1,10 +1,13 @@
 import React from 'react';
 import Navigation from './components/Navigation'
+import { RoomContextProvider } from './contexts/roomContext'
 
 function App() {
   return (
     <div className="App">
-      <Navigation />
+      <RoomContextProvider>
+        <Navigation />
+      </RoomContextProvider>
     </div>
   );
 }
