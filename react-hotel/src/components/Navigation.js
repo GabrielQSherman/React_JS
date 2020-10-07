@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import Rent from './Rent'
 import Return from './Return'
 import Home from './Home'
+import styles from '../utils/styles'
 
 export default function Navigation() {
 
@@ -37,7 +38,9 @@ export default function Navigation() {
       if (pageName === info.pn) return null
   
       return (
-        <button key={i}
+        <button
+        style={{...styles.button, borderRadius: 7, margin: 10}} 
+        key={i}
         onClick = {() => {setPage(info.pn)}}
         >{info.text}</button>
       )
@@ -45,7 +48,9 @@ export default function Navigation() {
   }
 
   return (
-    <div>
+    <div
+      style={{...styles.mainDiv}}
+    >
       <div>
         {renderButtons(page)}
       </div>
