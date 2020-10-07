@@ -12,7 +12,7 @@ export const RoomContextProvider = ({children}) => {
 
   const [rooms, setRooms] = useState(() => {
     
-    const lsRooms = localStorage.getItem('rooms');
+    const lsRooms = localStorage.getItem('hotel-rooms');
     
     if ( lsRooms !== undefined && lsRooms !== null) return JSON.parse(lsRooms)
   
@@ -21,7 +21,7 @@ export const RoomContextProvider = ({children}) => {
   })
 
   useEffect( () => {
-    localStorage.setItem('rooms', JSON.stringify(rooms))
+    localStorage.setItem('hotel-rooms', JSON.stringify(rooms))
   }, [rooms])
 
   return (
