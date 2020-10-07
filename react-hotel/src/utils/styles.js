@@ -2,6 +2,21 @@ module.exports = {
   mainDiv: {
     marginTop: 100,
   },
+  mainTitleDiv: {
+    marginBottom: 75,
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  mainTitle: {
+    marginLeft: '1.3em',
+    fontSize: '4em', 
+    textShadow: '3px 3px #3a7b8f'
+  },
+  titleLogo: {
+    height: '100%',
+    margin: 'auto 0',
+    padding:  '0 20px'
+  },
   roomContain: {
     display: 'flex',
     flexWrap: 'wrap',
