@@ -22,6 +22,10 @@ export const ThemeContextProvider = ({children}) => {
 
   useEffect( () => {
     localStorage.setItem(localStorageKey, JSON.stringify(theme))
+
+    document.body.style.backgroundColor = theme.darkmode ? 'black' : 'white'
+    document.body.style.color = theme.darkmode ? 'white' : 'black'
+
   }, [theme])
 
   return (
