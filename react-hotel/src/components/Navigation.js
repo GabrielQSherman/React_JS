@@ -6,11 +6,13 @@ import Home from './Home'
 import styles from '../utils/styles'
 
 import { useWalletContext } from '../contexts/walletContext'
+import { useThemeContext } from '../contexts/themeContext'
 
 export default function Navigation() {
 
   const [page, setPage] = useState('home')
   const {wallet, setWallet} = useWalletContext()
+  const {theme, setTheme} = useThemeContext()
   const renderPage = (pageName) => {
     switch (pageName) {
       case 'home':
@@ -34,7 +36,7 @@ export default function Navigation() {
 
   const renderButtons = (pageName) => {
     
-    const buttons = [{text: 'Back To Home', pn: 'home'}, {text: 'Return A Room', pn: 'return'}, {text: 'Checkout A Room', pn: 'rent'}, {text: 'Add Funds'}]
+    const buttons = [{text: 'Back To Home', pn: 'home'}, {text: 'Return A Room', pn: 'return'}, {text: 'Checkout A Room', pn: 'rent'}, {text: 'Add Funds'},  {text: 'Change Theme', func: 'theme'}]
     
     return buttons.map( (info, i) => {
       if (pageName === info.pn) return null
@@ -46,6 +48,8 @@ export default function Navigation() {
         onClick = {
           info.pn !== undefined
           ? () => {setPage(info.pn)}
+          : info.func === 'theme' 
+          ? () => {setTheme({...theme, darkmode: !theme.darkmode})}
           : () => {setWallet(wallet+10)}
         }
         >{info.text}</button>
