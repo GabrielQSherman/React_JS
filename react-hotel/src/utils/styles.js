@@ -26,7 +26,6 @@ module.exports = {
   roomDiv: {
     margin: 50,
     padding: 20,
-    backgroundColor: '#222',
     borderRadius: 14
   },
   button: {
@@ -36,7 +35,6 @@ module.exports = {
     transition: 'all ease-in-out .5s',
     border: 'none',
     color: 'white',
-    backgroundColor: '#333',
   },
   buttonDiv: {
     display: 'flex',
