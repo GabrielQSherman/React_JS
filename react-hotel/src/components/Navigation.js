@@ -13,6 +13,11 @@ export default function Navigation() {
   const [page, setPage] = useState('home')
   const {wallet, setWallet} = useWalletContext()
   const {theme, setTheme} = useThemeContext()
+  const dm = theme.darkmode || false;
+  const themeStyles = {
+    btn: { backgroundColor: dm ? '#333' : '#777'},
+  }
+
   const renderPage = (pageName) => {
     switch (pageName) {
       case 'home':
@@ -43,7 +48,7 @@ export default function Navigation() {
   
       return (
         <button
-        style={{...styles.button, borderRadius: 7, margin: 10}} 
+        style={{...styles.button, ...themeStyles.btn, borderRadius: 7, margin: 10}} 
         key={i}
         onClick = {
           info.pn !== undefined

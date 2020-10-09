@@ -25,7 +25,7 @@ export default function Rent() {
   const dm = theme.darkmode || false;
   const themeStyles = {
     btn: { backgroundColor: dm ? '#333' : '#777'},
-    rdiv: { backgroundColor: dm ? '#222' : '#666' }
+    rdiv: { backgroundColor: dm ? '#222' : 'antiquewhite' }
   }
 
   const rentMovie = (e) => {
