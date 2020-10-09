@@ -10,7 +10,7 @@ const localStorageKey = 'hotel-theme';
 
 export const ThemeContextProvider = ({children}) => {
 
-  const [Theme, setTheme] = useState(() => {
+  const [theme, setTheme] = useState(() => {
     
     const lsTheme = localStorage.getItem(localStorageKey);
     
@@ -21,11 +21,11 @@ export const ThemeContextProvider = ({children}) => {
   })
 
   useEffect( () => {
-    localStorage.setItem(localStorageKey, JSON.stringify(Theme))
-  }, [Theme])
+    localStorage.setItem(localStorageKey, JSON.stringify(theme))
+  }, [theme])
 
   return (
-    <ThemeContext.Provider value={{Theme: Theme, setTheme: setTheme}}>
+    <ThemeContext.Provider value={{theme: theme, setTheme: setTheme}}>
       {children}
     </ThemeContext.Provider>
   )
