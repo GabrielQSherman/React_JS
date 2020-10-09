@@ -2,6 +2,7 @@ import React from 'react'
 
 import { useWalletContext } from '../contexts/walletContext'
 import { useRoomContext } from '../contexts/roomContext'
+import { useThemeContext } from '../contexts/themeContext'
 
 import flattenArray from '../utils/flattenArray'
 import {rentedRooms} from '../utils/hotelFilters'
@@ -13,6 +14,7 @@ export default function Rent() {
 
   const {wallet, setWallet} = useWalletContext()
   const {rooms, setRooms} = useRoomContext() 
+  const {theme} = useThemeContext()
 
   const rntRooms = rentedRooms(rooms).map( (floor, floorInx) => {
     return floor.map( (room) => {
@@ -21,6 +23,12 @@ export default function Rent() {
   })
 
   const allRooms = flattenArray(rntRooms); 
+
+  const dm = theme.darkmode || false;
+  const themeStyles = {
+    btn: { backgroundColor: dm ? '#333' : '#777'},
+    rdiv: { backgroundColor: dm ? '#222' : '#666' }
+  }
 
   const returnMovie = (e) => {
 
@@ -65,13 +73,13 @@ export default function Rent() {
             return (
               <div
                 key={i}
-                style={{...styles.roomDiv}}
+                style={{...styles.roomDiv, ...themeStyles.rdiv }}
                 id={room.id}
               >
                 <h2>{`Floor ${room.floor}`}</h2> 
                 <h3>{`Room Number ${room.room}`}</h3> 
                 <button
-                  style={{...styles.button}} 
+                  style={{...styles.button, ...themeStyles.btn}} 
                   onClick={returnMovie}
                 >                  
                   Return This Room
