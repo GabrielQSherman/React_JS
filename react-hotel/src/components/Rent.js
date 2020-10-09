@@ -36,7 +36,7 @@ export default function Rent() {
         if ( room.id !== id ) return room
 
         if ( wallet - room.price < 0 ) {
-          alert('You dont have enough to check-in to this room')
+          alert('You dont have enough to check-in to this room\nAdd more funds to your wallet and you can try again.')
           return room
         } else {
           setWallet(wallet - room.price)
